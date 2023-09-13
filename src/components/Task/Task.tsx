@@ -10,6 +10,7 @@ import { IoMdSearch } from 'react-icons/io';
 import { BiPlus } from "react-icons/bi";
 
 import styles from './Task.module.css';
+import moment from 'moment';
 const {
     tasks,
     title,
@@ -53,7 +54,7 @@ const Task = () => {
             <section>
                 {list.map(
                     (
-                        { title, description, id, displayDescription, isCompleted },
+                        { title, description, id, displayDescription, isCompleted, dueDate },
                     ) => {
                         return (
                             <div className={taskContainer} key={id}>
@@ -92,6 +93,9 @@ const Task = () => {
                                             } `}
                                     >
                                         {description}
+
+                                        <time className='block text-right text-sm mr-[50px] font-bold text-slate-400 mt-2' title={moment(dueDate).format('MMMM Do YYYY, h:mm:ss a')}  >{moment(dueDate).fromNow()}</time>
+
                                     </p>
                                 </div>
                             </div>
