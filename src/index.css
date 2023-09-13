@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* Check Box Style */
+@import "./styles/checkbox.css";
 
 body {
     margin: 0;

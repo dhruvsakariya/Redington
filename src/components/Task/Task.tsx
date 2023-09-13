@@ -1,21 +1,47 @@
-import React from 'react'
+import React from 'react';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { todoState } from '../../store/todo/todoSlice';
 
-const tasks = [
-    {
-        title: 'Setup GitHub repository',
-        description: 'Begin by establishing a Redington GitHub repository, and then proceed to push your code while adhering to the conventional commit guidelines.'
-    },
-]
+import styles from "./Task.module.css";
+const { myButton } = styles;
 
 const Task = () => {
+    const { list } = useAppSelector(todoState);
+    const dispatch = useAppDispatch();
+
     return (
-        <section>
+        <main>
 
-            <input type='checkbox' title='mark complete' id='2' />
-            <label htmlFor='2'  >Setup GitHub repository</label>
+            <h1>Productivity Powerhouse</h1>
 
-        </section>
-    )
-}
+            <header>
+                <h3 className={myButton} >Tasks</h3>
+            </header>
 
-export default Task
+            <section>
+
+
+                {list.map(({ title, description, id }) => {
+                    return (
+                        <div className="flex items-start" key={id}>
+                            <div className="checkbox">
+                                <input type="checkbox" id={id.toString()} hidden title="task status" />
+                                <label htmlFor={id.toString()} className="check-box" />
+                            </div>
+                            <div>
+                                <label htmlFor={id.toString()}>{title}</label>
+                                <p>{description}</p>
+                            </div>
+                        </div>
+                    );
+                })}
+            </section>
+        </main>
+    );
+};
+
+export default Task;
+
+
+
+
