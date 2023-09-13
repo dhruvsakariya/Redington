@@ -2,12 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-    .myButton {
-        background-color: brown;
-        color: white;
-        padding: 12px 16px 12px 16px;
-        border-radius: 10px;
-        font-weight: 600;
-    }
+
+.title {
+    @apply text-primary font-[700] text-2xl md:text-3xl lg:text-4xl flex-1;
+}
+
+.tasks {
+    @apply text-primary py-3 text-xl md:text-2xl font-[600]
+}
+
+.taskContainer {
+    @apply flex items-start my-2;
+}
+
+.titleContainer {
+    @apply py-2 mx-3 flex flex-1 justify-between items-center border-b-2 border-slate-300 mb-2;
+}
+
+.descriptionHolder {
+    transition: transform .5s ease-in-out;
+}
+
+.taskDescription {
+    @apply mx-3 text-slate-600;
+
+    -webkit-user-select: none;
+    user-select: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s ease-out, opacity 0.4s ease-out;
+    opacity: 0;
+}
+
+.showDescription {
+    opacity: 1;
+    transition: max-height .5s ease-in;
+    max-height: 200px;
+}
+
+.taskTitle {
+    @apply text-ink-primary text-lg cursor-pointer;
 }

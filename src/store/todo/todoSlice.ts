@@ -1,17 +1,19 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/index';
+import { reHydrate } from './todoThunk';
 
 interface Task {
     id: number;
     title: string;
     description: string;
     isCompleted: boolean;
+    displayDescription: boolean;
 }
 
 export interface TodoState {
     list: Task[];
 
-    form: Omit<Task, 'isCompleted' | 'id'>;
+    form: Omit<Task, 'isCompleted' | 'id' | 'displayDescription'>;
 }
 
 export const initialState: TodoState = {
@@ -22,6 +24,7 @@ export const initialState: TodoState = {
             description:
                 'Immerse yourself in a world of creativity and inspiration. Explore the vibrant colors and thought-provoking pieces at your local art gallery.',
             isCompleted: false,
+            displayDescription: false,
         },
         {
             id: 2,
@@ -29,6 +32,7 @@ export const initialState: TodoState = {
             description:
                 "A gripping tale of mystery and adventure, the book has captivated your attention. You can't wait to unravel the secrets that lie within its pages.",
             isCompleted: false,
+            displayDescription: false,
         },
 
         {
@@ -37,6 +41,7 @@ export const initialState: TodoState = {
             description:
                 "Nature calls, and you're ready to answer. A pristine hiking trail awaits, promising breathtaking vistas and the soothing sounds of the wilderness.",
             isCompleted: false,
+            displayDescription: false,
         },
 
         {
@@ -45,6 +50,7 @@ export const initialState: TodoState = {
             description:
                 "The kitchen is your canvas, and today you're feeling adventurous. Time to experiment with flavors and create a culinary masterpiece.",
             isCompleted: false,
+            displayDescription: false,
         },
 
         {
@@ -53,6 +59,7 @@ export const initialState: TodoState = {
             description:
                 'Escape the daily grind and recharge. A cozy cabin in the woods or a beachfront retreat? The possibilities for a memorable weekend are endless.',
             isCompleted: false,
+            displayDescription: false,
         },
 
         {
@@ -61,6 +68,7 @@ export const initialState: TodoState = {
             description:
                 'Amid the chaos of life, find inner calm. Beginning a daily meditation routine promises mental clarity and a sense of tranquility.',
             isCompleted: false,
+            displayDescription: false,
         },
 
         {
@@ -69,6 +77,7 @@ export const initialState: TodoState = {
             description:
                 'Expand your horizons and embrace a new culture. Learning a language is a journey that opens doors to new experiences and connections.',
             isCompleted: false,
+            displayDescription: false,
         },
 
         {
@@ -77,6 +86,7 @@ export const initialState: TodoState = {
             description:
                 'Give back to the community and make a positive impact. Organizing a charity event can bring people together for a meaningful cause.',
             isCompleted: false,
+            displayDescription: false,
         },
 
         {
@@ -85,6 +95,7 @@ export const initialState: TodoState = {
             description:
                 'Time to get back into shape! Renewing your gym membership is the first step toward a healthier, more active lifestyle.',
             isCompleted: false,
+            displayDescription: false,
         },
 
         {
@@ -93,6 +104,7 @@ export const initialState: TodoState = {
             description:
                 'Words have the power to heal and strengthen bonds. Take a moment to pen a letter expressing your love and appreciation to someone dear.',
             isCompleted: false,
+            displayDescription: false,
         },
     ],
     form: {
@@ -140,12 +152,26 @@ export const todoSlice = createSlice({
 
             state.list = [...list];
         },
+
+
+        showTaskDescription: (state, action: PayloadAction<number>) => {
+            const id = action.payload;
+            const list = state.list;
+
+            const taskIdx = list.findIndex((item) => item.id === id);
+
+            list[taskIdx].displayDescription = !list[taskIdx].displayDescription;
+
+            state.list = [...list];
+        }
     },
 
-    extraReducers: (builder) => { },
+    extraReducers: (builder) => {
+        reHydrate(builder);
+    },
 });
 
-export const { addTask } = todoSlice.actions;
+export const { addTask, showTaskDescription, completeTask } = todoSlice.actions;
 
 export const todoState = (state: RootState) => state.todo;
 

@@ -1,47 +1,106 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { todoState } from '../../store/todo/todoSlice';
+import {
+    completeTask,
+    showTaskDescription,
+    todoState,
+} from '../../store/todo/todoSlice';
+import { BiSolidLeftArrow } from 'react-icons/bi';
+import { IoMdSearch } from 'react-icons/io';
+import { BiPlus } from "react-icons/bi";
 
-import styles from "./Task.module.css";
-const { myButton } = styles;
+import styles from './Task.module.css';
+const {
+    tasks,
+    title,
+    taskTitle,
+    taskContainer,
+    titleContainer,
+    showDescription,
+    taskDescription,
+    descriptionHolder,
+} = styles;
 
 const Task = () => {
     const { list } = useAppSelector(todoState);
     const dispatch = useAppDispatch();
 
+    const handleShowDescription = (id: number) => {
+        dispatch(showTaskDescription(id));
+    };
+
+    const handleCompleteTask = (id: number) => {
+        dispatch(completeTask(id));
+    };
+
     return (
-        <main>
+        <main className=" w-full sm:w-[80%] md:w-[75%] lg:w-[60%]  mx-auto   px-[12px] sm:px-[24px] md:px-[32px] lg:px-[40px] py-2 mb-4  rounded-md mt-0 sm:mt-4 md:mt-8 lg:mt-10 shadow ">
+            <div className='flex items-center  my-8' >
+                <h1 className={title}>Productivity Powerhouse</h1>
+                <div className='border-slate-300/75 border rounded-full cursor-pointer mx-3 p-2 ' >
 
-            <h1>Productivity Powerhouse</h1>
+                    <IoMdSearch className='text-slate-500 ' size={22} />
+                </div>
+                <div className='bg-primary p-2 mx-3 rounded-full cursor-pointer' >
+                    <BiPlus className='text-white' size={22} />
+                </div>
+            </div>
 
-            <header>
-                <h3 className={myButton} >Tasks</h3>
+            <header className="mb-6">
+                <h3 className={tasks}>Tasks</h3>
             </header>
 
             <section>
-
-
-                {list.map(({ title, description, id }) => {
-                    return (
-                        <div className="flex items-start" key={id}>
-                            <div className="checkbox">
-                                <input type="checkbox" id={id.toString()} hidden title="task status" />
-                                <label htmlFor={id.toString()} className="check-box" />
+                {list.map(
+                    (
+                        { title, description, id, displayDescription, isCompleted },
+                    ) => {
+                        return (
+                            <div className={taskContainer} key={id}>
+                                <div className="checkbox flex pt-3 ">
+                                    <input
+                                        type="checkbox"
+                                        id={id.toString()}
+                                        checked={isCompleted}
+                                        hidden
+                                        title="task status"
+                                        onChange={() => handleCompleteTask(id)}
+                                    />
+                                    <label htmlFor={id.toString()} className="check-box" />
+                                </div>
+                                <div>
+                                    <div className={`${titleContainer}`}>
+                                        <label
+                                            htmlFor={id.toString()}
+                                            className={`${taskTitle} ${isCompleted ? 'line-through' : null
+                                                } `}
+                                        >
+                                            {title}
+                                        </label>
+                                        <div
+                                            className="p-2 bg-primary/10 mr-4 rounded-full cursor-pointer"
+                                            onClick={() => handleShowDescription(id)}
+                                        >
+                                            <BiSolidLeftArrow
+                                                className={`${descriptionHolder} text-primary ${displayDescription ? '-rotate-[90deg]' : ''
+                                                    }`}
+                                            />
+                                        </div>
+                                    </div>
+                                    <p
+                                        className={`${taskDescription} ${displayDescription ? showDescription : ''
+                                            } `}
+                                    >
+                                        {description}
+                                    </p>
+                                </div>
                             </div>
-                            <div>
-                                <label htmlFor={id.toString()}>{title}</label>
-                                <p>{description}</p>
-                            </div>
-                        </div>
-                    );
-                })}
+                        );
+                    }
+                )}
             </section>
         </main>
     );
 };
 
 export default Task;
-
-
-
-
