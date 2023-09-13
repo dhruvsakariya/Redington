@@ -19,8 +19,38 @@
     @apply py-2 mx-3 flex flex-1 justify-between items-center border-b-2 border-slate-300 mb-2;
 }
 
+.titleContainer:hover .editIcon,
+.titleContainer:hover .deleteIcon {
+    @apply opacity-100;
+}
+
+.editIcon {
+    @apply opacity-0;
+    transition: opacity 0.5s ease-in-out;
+    @apply mr-2 cursor-pointer text-gray-400/75;
+}
+
+.editIcon:hover {
+    @apply text-primary;
+}
+
+.deleteIcon {
+    @apply opacity-0;
+    transition: opacity 0.5s ease-in-out;
+    @apply mr-8 cursor-pointer text-gray-400/75;
+}
+
+.deleteIcon:hover {
+    @apply text-red-600;
+}
+
 .descriptionHolder {
     transition: transform .5s ease-in-out;
+}
+
+
+.taskTitle {
+    @apply text-ink-primary text-lg cursor-pointer flex-1;
 }
 
 .taskDescription {
@@ -38,8 +68,4 @@
     opacity: 1;
     transition: max-height .5s ease-in;
     max-height: 200px;
-}
-
-.taskTitle {
-    @apply text-ink-primary text-lg cursor-pointer;
 }

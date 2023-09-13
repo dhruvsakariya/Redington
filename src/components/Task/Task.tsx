@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
     completeTask,
+    deleteTask,
     showTaskDescription,
     todoState,
 } from '../../store/todo/todoSlice';
 import { BiSolidLeftArrow } from 'react-icons/bi';
 import { IoMdSearch } from 'react-icons/io';
 import { BiPlus } from "react-icons/bi";
+import { FiEdit3 } from "react-icons/fi";
+import { MdOutlineDelete } from "react-icons/md";
 
 import styles from './Task.module.css';
 import moment from 'moment';
@@ -20,9 +23,12 @@ const {
     showDescription,
     taskDescription,
     descriptionHolder,
+    deleteIcon,
+    editIcon,
 } = styles;
 
 const Task = () => {
+
     const { list } = useAppSelector(todoState);
     const dispatch = useAppDispatch();
 
@@ -34,8 +40,12 @@ const Task = () => {
         dispatch(completeTask(id));
     };
 
+    const handleDeleteTask = (id: number) => {
+        dispatch(deleteTask(id));
+    }
+
     return (
-        <main className=" w-full sm:w-[80%] md:w-[75%] lg:w-[60%]  mx-auto   px-[12px] sm:px-[24px] md:px-[32px] lg:px-[40px] py-2 mb-4  rounded-md mt-0 sm:mt-4 md:mt-8 lg:mt-10 shadow ">
+        <main className=" w-full sm:w-[80%] md:w-[75%] lg:w-[60%]  mx-auto   px-[12px] sm:px-[24px] md:px-[32px] lg:px-[40px] py-2 mb-10  rounded-md mt-0 sm:mt-4 md:mt-8 lg:mt-10 shadow ">
             <div className='flex items-center  my-8' >
                 <h1 className={title}>Productivity Powerhouse</h1>
                 <div className='border-slate-300/75 border rounded-full cursor-pointer mx-3 p-2 ' >
@@ -71,13 +81,20 @@ const Task = () => {
                                 </div>
                                 <div>
                                     <div className={`${titleContainer}`}>
-                                        <label
-                                            htmlFor={id.toString()}
-                                            className={`${taskTitle} ${isCompleted ? 'line-through' : null
-                                                } `}
-                                        >
-                                            {title}
-                                        </label>
+                                        <div className='flex items-center flex-1 ' >
+                                            <label
+                                                htmlFor={id.toString()}
+                                                className={`${taskTitle} ${isCompleted ? 'line-through' : null
+                                                    } `}
+                                            >
+                                                {title}
+
+                                            </label>
+
+                                            <FiEdit3 size={20} className={`${editIcon}`} />
+                                            <MdOutlineDelete size={20} className={`${deleteIcon}`} onClick={() => { handleDeleteTask(id) }} />
+
+                                        </div>
                                         <div
                                             className="p-2 bg-primary/10 mr-4 rounded-full cursor-pointer"
                                             onClick={() => handleShowDescription(id)}

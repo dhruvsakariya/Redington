@@ -183,7 +183,7 @@ export const todoSlice = createSlice({
     },
 });
 
-export const { addTask, showTaskDescription, completeTask } = todoSlice.actions;
+export const { addTask, showTaskDescription, completeTask, deleteTask } = todoSlice.actions;
 
 export const todoState = (state: RootState) => state.todo;
 

@@ -8,11 +8,10 @@ export const reHydrate = (
 ): void => {
     builder.addCase(REHYDRATE, (state, action: RehydrateAction) => {
         const root = action.payload as RootState;
-        const { list } = initialState;
 
         if (root && root.todo) state = root.todo;
 
-        for (let i = 0; i < list.length; i++)
+        for (let i = 0; i < state.list.length; i++)
             state.list[i].displayDescription = false;
 
         return {
