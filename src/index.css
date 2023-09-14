@@ -5,6 +5,9 @@
 /* Check Box Style */
 @import "./styles/checkbox.css";
 
+/* Modal Style */
+@import "./styles/modal.css";
+
 body {
     margin: 0;
     font-family: cursive;
