@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/index';
 import { reHydrate } from './todoThunk';
+import moment from 'moment';
 
 interface Task {
     id: number;
@@ -14,14 +15,16 @@ interface Task {
 export interface TodoState {
     list: Task[];
 
-    form: Omit<Task, 'isCompleted' | 'id' | 'displayDescription'> & { show: boolean };
+    form: Omit<Task, 'isCompleted' | 'displayDescription'> & {
+        show: boolean;
+    };
 }
 
 export const initialState: TodoState = {
     list: [
         {
             id: 1,
-            title: "Visit an art gallery",
+            title: 'Visit an art gallery',
             description:
                 'Immerse yourself in a world of creativity and inspiration. Explore the vibrant colors and thought-provoking pieces at your local art gallery.',
             isCompleted: false,
@@ -119,9 +122,10 @@ export const initialState: TodoState = {
         },
     ],
     form: {
+        id: -1,
         title: '',
         description: '',
-        dueDate: '',
+        dueDate: moment(new Date()).format('YYYY-MM-DDTHH:mm'),
         show: false,
     },
 };
@@ -132,11 +136,19 @@ export const todoSlice = createSlice({
     reducers: {
         addTask: (
             state,
-            action: PayloadAction<Omit<Task, 'isCompleted' | 'id'>>
+            action: PayloadAction<
+                Omit<Task, 'isCompleted' | 'id' | 'displayDescription'>
+            >
         ) => {
             const list = state.list;
 
-            list.push({ ...action.payload, isCompleted: false, id: list.length });
+            list.push({
+                ...action.payload,
+                isCompleted: false,
+                id: Date.now(),
+                displayDescription: false,
+            });
+
         },
 
         updateTask: (state, action: PayloadAction<Task>) => {
@@ -166,7 +178,6 @@ export const todoSlice = createSlice({
             state.list = [...list];
         },
 
-
         showTaskDescription: (state, action: PayloadAction<number>) => {
             const id = action.payload;
             const list = state.list;
@@ -180,9 +191,28 @@ export const todoSlice = createSlice({
 
         displayAddTaskForm: (state, action: PayloadAction<boolean>) => {
             const show = action.payload;
-            state.form.show = show
-        }
+            state.form.show = show;
+        },
 
+        setNewTitle: (state, action: PayloadAction<string>) => {
+            state.form.title = action.payload;
+        },
+
+        setNewId: (state, action: PayloadAction<number>) => {
+            state.form.id = action.payload;
+        },
+
+        setNewDescription: (state, action: PayloadAction<string>) => {
+            state.form.description = action.payload;
+        },
+
+        setNewDueDate: (state, action: PayloadAction<string>) => {
+            state.form.dueDate = action.payload;
+        },
+
+        clearForm: (state) => {
+            state.form = { ...initialState.form };
+        }
     },
 
     extraReducers: (builder) => {
@@ -190,7 +220,19 @@ export const todoSlice = createSlice({
     },
 });
 
-export const { addTask, showTaskDescription, completeTask, deleteTask, displayAddTaskForm } = todoSlice.actions;
+export const {
+    addTask,
+    updateTask,
+    showTaskDescription,
+    completeTask,
+    deleteTask,
+    displayAddTaskForm,
+    setNewId,
+    setNewTitle,
+    setNewDescription,
+    setNewDueDate,
+    clearForm,
+} = todoSlice.actions;
 
 export const todoState = (state: RootState) => state.todo;
 

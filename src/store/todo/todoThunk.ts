@@ -2,6 +2,7 @@ import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
 import { TodoState } from "./todoSlice";
 import { REHYDRATE, RehydrateAction } from 'redux-persist';
 import { RootState } from "../../app/index";
+import moment from "moment";
 
 export const reHydrate = (
     builder: ActionReducerMapBuilder<TodoState>
@@ -16,7 +17,7 @@ export const reHydrate = (
 
         return {
             ...state,
-            form: { ...state.form, show: false }
+            form: { ...state.form, show: false, dueDate: moment(new Date()).format('YYYY-MM-DDTHH:mm') }
         };
     });
 };

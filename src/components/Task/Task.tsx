@@ -4,6 +4,10 @@ import {
     completeTask,
     deleteTask,
     displayAddTaskForm,
+    setNewDescription,
+    setNewDueDate,
+    setNewId,
+    setNewTitle,
     showTaskDescription,
     todoState,
 } from '../../store/todo/todoSlice';
@@ -53,6 +57,15 @@ const Task = () => {
         dispatch(displayAddTaskForm(true));
     }
 
+    const handleEditTask = (id: number) => {
+        handleShowTaskForm();
+        const editIdx = list.findIndex((item) => item.id === id);
+        dispatch(setNewId(list[editIdx].id));
+        dispatch(setNewTitle(list[editIdx].title));
+        dispatch(setNewDescription(list[editIdx].description));
+        dispatch(setNewDueDate(list[editIdx].dueDate));
+    }
+
     return (
         <main className=" w-full sm:w-[80%] md:w-[75%] lg:w-[60%]  mx-auto   px-[12px] sm:px-[24px] md:px-[32px] lg:px-[40px] py-2 mb-10  rounded-md mt-0 sm:mt-4 md:mt-8 lg:mt-10 shadow ">
             <div className="flex items-center  my-8">
@@ -92,7 +105,7 @@ const Task = () => {
                                     />
                                     <label htmlFor={id.toString()} className="check-box" />
                                 </div>
-                                <div>
+                                <div className='flex-1' >
                                     <div className={`${titleContainer}`}>
                                         <div className="flex items-center flex-1 ">
                                             <label
@@ -103,7 +116,11 @@ const Task = () => {
                                                 {title}
                                             </label>
 
-                                            <FiEdit3 size={20} className={`${editIcon}`} />
+                                            <FiEdit3
+                                                size={20}
+                                                className={`${editIcon}`}
+                                                onClick={() => handleEditTask(id)}
+                                            />
                                             <MdOutlineDelete
                                                 size={20}
                                                 className={`${deleteIcon}`}
