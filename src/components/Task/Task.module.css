@@ -40,6 +40,9 @@
 }
 
 .descriptionHolder {
+
+    @apply w-[10px] h-[10px] sm:w-[12px] sm:h-[12px] md:w-[14px] md:h-[14px]   ;
+
     transition: transform .5s ease-in-out;
 }
 

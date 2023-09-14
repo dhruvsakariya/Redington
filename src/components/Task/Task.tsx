@@ -185,7 +185,7 @@ const Task = () => {
                                                                 />
                                                             </div>
                                                             <div
-                                                                className="p-2 bg-primary/10  ms-1 mr-2 md:mr-3 lg:mr-4 rounded-full cursor-pointer "
+                                                                className=" p-1 sm:p-1.5 md:p-2 bg-primary/10 my-1 md:my-0  ms-1 mr-2 md:mr-3 lg:mr-4 rounded-full cursor-pointer "
                                                                 onClick={() => handleShowDescription(id)}
                                                             >
                                                                 <BiSolidLeftArrow
@@ -200,14 +200,32 @@ const Task = () => {
                                                         >
                                                             {description}
 
-                                                            <time
-                                                                className="block text-right text-sm  mr-[25px] sm:mr-[30px] md:mr-[50px] font-bold text-slate-400 mt-2"
-                                                                title={moment(dueDate).format(
-                                                                    'MMMM Do YYYY, h:mm:ss a'
-                                                                )}
-                                                            >
-                                                                {moment(dueDate).fromNow()}
-                                                            </time>
+                                                            <div className='flex justify-between mt-2' >
+                                                                <div className='flex md:hidden text-primary ' >
+                                                                    <FiEdit3
+                                                                        size={20}
+                                                                        className={`mx-1`}
+                                                                        onClick={() => handleEditTask(id)}
+                                                                    />
+                                                                    <MdOutlineDelete
+                                                                        size={20}
+                                                                        className={`mx-1 text-red-500 `}
+                                                                        onClick={() => {
+                                                                            setShowAreYouSure(id);
+                                                                        }}
+                                                                    />
+                                                                </div>
+                                                                <div />
+                                                                <time
+                                                                    className="block text-right text-sm  mr-[25px] sm:mr-[30px] md:mr-[50px] font-bold text-slate-400"
+                                                                    title={moment(dueDate).format(
+                                                                        'MMMM Do YYYY, h:mm:ss a'
+                                                                    )}
+                                                                >
+                                                                    {moment(dueDate).fromNow()}
+                                                                </time>
+                                                            </div>
+
                                                         </p>
                                                     </div>
                                                 </div>
