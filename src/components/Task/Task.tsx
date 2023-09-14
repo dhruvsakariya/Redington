@@ -137,7 +137,7 @@ const Task = () => {
                                                 {...provided.dragHandleProps}
                                             >
                                                 <div className={taskContainer}>
-                                                    <div className="checkbox flex pt-3 ">
+                                                    <div className="checkbox flex pt-3 mt-2 ">
                                                         <div>
                                                             <div>
                                                                 <MdDragIndicator
@@ -160,7 +160,7 @@ const Task = () => {
                                                             className="check-box"
                                                         />
                                                     </div>
-                                                    <div className="flex-1">
+                                                    <div className="flex-1 mb-2">
                                                         <div className={`${titleContainer}`}>
                                                             <div className="flex items-center flex-1 ">
                                                                 <label
