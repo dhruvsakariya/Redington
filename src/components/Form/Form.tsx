@@ -37,7 +37,6 @@ const Form = () => {
   };
 
   const handleDueDateInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     dispatch(setNewDueDate(event.target.value));
   };
 
@@ -45,7 +44,7 @@ const Form = () => {
 
     event.preventDefault();
 
-    if (id === -1) {
+    if (id === '-1') {
       dispatch(addTask({ title, description, dueDate }));
     } else {
       dispatch(updateTask({ id, title, description, dueDate, displayDescription: false, isCompleted: false }))
