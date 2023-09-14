@@ -98,9 +98,7 @@ const Task = () => {
         <main className=" w-full sm:w-[80%] md:w-[75%] lg:w-[60%]  mx-auto   px-[12px] sm:px-[24px] md:px-[32px] lg:px-[40px] py-2 mb-10  rounded-md mt-0 sm:mt-4 md:mt-8 lg:mt-10 shadow ">
             <div className="flex items-center  my-8">
                 <h1 className={title}>Productivity Powerhouse</h1>
-                <div className="border-slate-300/75 border rounded-full cursor-pointer mx-3 p-2 ">
-                    <IoMdSearch className="text-slate-500 " size={22} />
-                </div>
+
                 <div
                     className="bg-primary p-2 mx-3 rounded-full cursor-pointer"
                     onClick={handleShowTaskForm}
@@ -109,7 +107,11 @@ const Task = () => {
                 </div>
             </div>
 
-            <header className="mb-6">
+            <header className='mb-6 sm:flex sm:flex-row-reverse  sm:justify-between sm:items-center ' >
+                <div className="search-box  mr-3 hidden  sm:block ">
+                    <button type='button' title='search' className="btn-search flex  justify-center items-center  "><IoMdSearch className=" " size={22} /> </button>
+                    <input type="text" className="input-search" placeholder="search tasks..." />
+                </div>
                 <h3 className={tasks}>Tasks</h3>
             </header>
 

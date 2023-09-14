@@ -8,6 +8,9 @@
 /* Modal Style */
 @import "./styles/modal.css";
 
+/* Icon Search Style */
+@import "./styles/iconSearch.css";
+
 body {
     margin: 0;
     font-family: cursive;
