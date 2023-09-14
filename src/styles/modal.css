@@ -1,3 +1,8 @@
+body.ReactModal__Body--open {
+    overflow: hidden;
+}
+
+
 .modal_1 {
     @apply outline-none;
 }

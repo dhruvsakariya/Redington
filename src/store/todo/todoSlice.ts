@@ -14,7 +14,7 @@ interface Task {
 export interface TodoState {
     list: Task[];
 
-    form: Omit<Task, 'isCompleted' | 'id' | 'displayDescription'>;
+    form: Omit<Task, 'isCompleted' | 'id' | 'displayDescription'> & { show: boolean };
 }
 
 export const initialState: TodoState = {
@@ -121,7 +121,8 @@ export const initialState: TodoState = {
     form: {
         title: '',
         description: '',
-        dueDate: ''
+        dueDate: '',
+        show: false,
     },
 };
 
@@ -175,7 +176,13 @@ export const todoSlice = createSlice({
             list[taskIdx].displayDescription = !list[taskIdx].displayDescription;
 
             state.list = [...list];
+        },
+
+        displayAddTaskForm: (state, action: PayloadAction<boolean>) => {
+            const show = action.payload;
+            state.form.show = show
         }
+
     },
 
     extraReducers: (builder) => {
@@ -183,7 +190,7 @@ export const todoSlice = createSlice({
     },
 });
 
-export const { addTask, showTaskDescription, completeTask, deleteTask } = todoSlice.actions;
+export const { addTask, showTaskDescription, completeTask, deleteTask, displayAddTaskForm } = todoSlice.actions;
 
 export const todoState = (state: RootState) => state.todo;
 

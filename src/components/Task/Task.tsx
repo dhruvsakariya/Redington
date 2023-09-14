@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
     completeTask,
     deleteTask,
+    displayAddTaskForm,
     showTaskDescription,
     todoState,
 } from '../../store/todo/todoSlice';
@@ -48,6 +49,10 @@ const Task = () => {
         dispatch(deleteTask(id));
     };
 
+    const handleShowTaskForm = () => {
+        dispatch(displayAddTaskForm(true));
+    }
+
     return (
         <main className=" w-full sm:w-[80%] md:w-[75%] lg:w-[60%]  mx-auto   px-[12px] sm:px-[24px] md:px-[32px] lg:px-[40px] py-2 mb-10  rounded-md mt-0 sm:mt-4 md:mt-8 lg:mt-10 shadow ">
             <div className="flex items-center  my-8">
@@ -55,7 +60,7 @@ const Task = () => {
                 <div className="border-slate-300/75 border rounded-full cursor-pointer mx-3 p-2 ">
                     <IoMdSearch className="text-slate-500 " size={22} />
                 </div>
-                <div className="bg-primary p-2 mx-3 rounded-full cursor-pointer">
+                <div className="bg-primary p-2 mx-3 rounded-full cursor-pointer" onClick={handleShowTaskForm} >
                     <BiPlus className="text-white" size={22} />
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
-import { TodoState, initialState } from "./todoSlice";
+import { TodoState } from "./todoSlice";
 import { REHYDRATE, RehydrateAction } from 'redux-persist';
 import { RootState } from "../../app/index";
 
@@ -16,6 +16,7 @@ export const reHydrate = (
 
         return {
             ...state,
+            form: { ...state.form, show: false }
         };
     });
 };
