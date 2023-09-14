@@ -1,8 +1,48 @@
-<!-- https://dribbble.com/shots/5465312-Agenda-Things-to-do/attachments/1182794?mode=media -->
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+
+Todo App
+========
+
+### About
+
+The Todo-App is a task managing Web-Application to help its users to stay organized for their day to day activities.
+
+The Todo-App can be used for multiple purposes such as shopping lists, taking notes or planning an event.
+
+### Technologies Used
+- React
+- Redux
+- Redux Persist
+- Tailwind
+- Flowbite
+- moment etc...
+
+
+### Features and Description
+
+The Todo-App's features include:
+
+#### Adding Tasks
+
+By Click on Add Button User Can Add New Task.
+
+#### Editing Tasks
+
+To correct mistakes or update User can Edit particular Task. 
+
+#### Marking Tasks as completed
+
+By Clicking on Task User Can Mark it as completed
+
+#### User Friendly UI
+
+Better & Interactive User Interface
+
+#### Due Date
+
+User Can Add Task due date to keep deadline in mind
 
 ## Available Scripts
 
