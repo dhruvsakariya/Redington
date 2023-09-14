@@ -28,7 +28,7 @@ export const initialState: TodoState = {
             description:
                 'Immerse yourself in a world of creativity and inspiration. Explore the vibrant colors and thought-provoking pieces at your local art gallery.',
             isCompleted: false,
-            dueDate: '2023-09-14T20:41:41+05:30',
+            dueDate: '2023-09-18T20:41:41+05:30',
             displayDescription: false,
         },
         {
@@ -37,7 +37,7 @@ export const initialState: TodoState = {
             description:
                 "A gripping tale of mystery and adventure, the book has captivated your attention. You can't wait to unravel the secrets that lie within its pages.",
             isCompleted: false,
-            dueDate: '2023-09-14T20:41:41+05:30',
+            dueDate: '2023-09-18T20:41:41+05:30',
             displayDescription: false,
         },
 
@@ -47,7 +47,7 @@ export const initialState: TodoState = {
             description:
                 "Nature calls, and you're ready to answer. A pristine hiking trail awaits, promising breathtaking vistas and the soothing sounds of the wilderness.",
             isCompleted: false,
-            dueDate: '2023-09-14T20:41:41+05:30',
+            dueDate: '2023-09-18T20:41:41+05:30',
             displayDescription: false,
         },
 
@@ -57,7 +57,7 @@ export const initialState: TodoState = {
             description:
                 "The kitchen is your canvas, and today you're feeling adventurous. Time to experiment with flavors and create a culinary masterpiece.",
             isCompleted: false,
-            dueDate: '2023-09-14T20:41:41+05:30',
+            dueDate: '2023-09-18T20:41:41+05:30',
             displayDescription: false,
         },
 
@@ -67,7 +67,7 @@ export const initialState: TodoState = {
             description:
                 'Escape the daily grind and recharge. A cozy cabin in the woods or a beachfront retreat? The possibilities for a memorable weekend are endless.',
             isCompleted: false,
-            dueDate: '2023-09-14T20:41:41+05:30',
+            dueDate: '2023-09-18T20:41:41+05:30',
             displayDescription: false,
         },
     ],
