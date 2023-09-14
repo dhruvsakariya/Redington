@@ -137,7 +137,7 @@ const Task = () => {
                                                 {...provided.dragHandleProps}
                                             >
                                                 <div className={taskContainer}>
-                                                    <div className="checkbox flex pt-3 mt-2 ">
+                                                    <div className="checkbox flex pt-3 ">
                                                         <div>
                                                             <div>
                                                                 <MdDragIndicator
@@ -185,7 +185,7 @@ const Task = () => {
                                                                 />
                                                             </div>
                                                             <div
-                                                                className="p-2 bg-primary/10 mr-4 rounded-full cursor-pointer"
+                                                                className="p-2 bg-primary/10  ms-1 mr-2 md:mr-3 lg:mr-4 rounded-full cursor-pointer "
                                                                 onClick={() => handleShowDescription(id)}
                                                             >
                                                                 <BiSolidLeftArrow
@@ -201,7 +201,7 @@ const Task = () => {
                                                             {description}
 
                                                             <time
-                                                                className="block text-right text-sm mr-[50px] font-bold text-slate-400 mt-2"
+                                                                className="block text-right text-sm  mr-[25px] sm:mr-[30px] md:mr-[50px] font-bold text-slate-400 mt-2"
                                                                 title={moment(dueDate).format(
                                                                     'MMMM Do YYYY, h:mm:ss a'
                                                                 )}

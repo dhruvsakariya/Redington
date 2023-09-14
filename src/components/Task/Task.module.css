@@ -11,7 +11,7 @@
 }
 
 .titleContainer {
-    @apply py-2 mx-3 flex flex-1 justify-between items-center border-b-2 border-slate-300 mb-2;
+    @apply py-2 mx-3 flex flex-1 justify-between items-start md:items-center border-b-2 border-slate-300 mb-2;
 }
 
 .titleContainer:hover .editIcon,
@@ -20,7 +20,7 @@
 }
 
 .editIcon {
-    @apply opacity-0;
+    @apply opacity-0 hidden md:block;
     transition: opacity 0.5s ease-in-out;
     @apply mr-2 cursor-pointer text-gray-400/75;
 }
@@ -30,7 +30,7 @@
 }
 
 .deleteIcon {
-    @apply opacity-0;
+    @apply opacity-0 hidden md:block;
     transition: opacity 0.5s ease-in-out;
     @apply mr-8 cursor-pointer text-gray-400/75;
 }
@@ -45,11 +45,11 @@
 
 
 .taskTitle {
-    @apply text-ink-primary text-lg cursor-pointer flex-1;
+    @apply text-ink-primary text-base md:text-lg cursor-pointer flex-1;
 }
 
 .taskDescription {
-    @apply mx-3 text-slate-600;
+    @apply mx-3 text-slate-600 text-sm md:text-base;
 
     -webkit-user-select: none;
     user-select: none;

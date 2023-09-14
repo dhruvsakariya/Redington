@@ -68,7 +68,7 @@ const Form = () => {
       shouldCloseOnOverlayClick
       overlayClassName="overlay_1"
     >
-      <div className={'bg-white rounded-md   w-full lg:w-[400px] '}>
+      <div className={'bg-white rounded-md   w-[315px] sm:w-[350px] md:w-[370px] lg:w-[400px] '}>
         <div className="flex items-center mb-3 ps-4 pe-1 py-2  ">
           <h2 className="text-xl text-primary font-semibold ">New Task</h2>
           <GrClose
