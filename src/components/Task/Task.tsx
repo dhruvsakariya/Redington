@@ -1,5 +1,5 @@
 import type { DropResult, ResponderProvided } from 'react-beautiful-dnd';
-import React, { Dispatch, useState, useEffect } from 'react';
+import React, { Dispatch, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
     Task as TaskType,
@@ -27,7 +27,7 @@ import { Draggable, DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import styles from './Task.module.css';
 import moment from 'moment';
-import { searchTasks } from '../../utils/search';
+
 const {
     tasks,
     title,
