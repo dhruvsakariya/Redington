@@ -1,5 +1,5 @@
 import type { DropResult, ResponderProvided } from 'react-beautiful-dnd';
-import React, { Dispatch, useState } from 'react';
+import React, { Dispatch, useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
     Task as TaskType,
@@ -27,6 +27,7 @@ import { Draggable, DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import styles from './Task.module.css';
 import moment from 'moment';
+import { searchTasks } from '../../utils/search';
 const {
     tasks,
     title,
@@ -49,10 +50,13 @@ const reorder = (list: any, startIndex: any, endIndex: any) => {
 };
 
 const Task = () => {
-    const [showAreYouSure, setShowAreYouSure] = useState<string>('-1');
-
     const { list } = useAppSelector(todoState);
     const dispatch = useAppDispatch();
+
+    const [showAreYouSure, setShowAreYouSure] = useState<string>('-1');
+    const [query, setQuery] = useState('');
+
+
 
     const handleShowDescription = (id: string) => {
         dispatch(showTaskDescription(id));
@@ -94,6 +98,12 @@ const Task = () => {
         dispatch(setList(items));
     };
 
+    const handleSearchTask = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(event.target.value.toLocaleLowerCase());
+    }
+
+    const listData = list.filter((task) => task.title.toLowerCase().includes(query) || task.description.toLowerCase().includes(query));
+
     return (
         <main className=" w-full sm:w-[80%] md:w-[75%] lg:w-[60%]  mx-auto   px-[12px] sm:px-[24px] md:px-[32px] lg:px-[40px] py-2 mb-10  rounded-md mt-0 sm:mt-4 md:mt-8 lg:mt-10 shadow ">
             <div className="flex items-center  my-8">
@@ -110,7 +120,7 @@ const Task = () => {
             <header className='mb-6 sm:flex sm:flex-row-reverse  sm:justify-between sm:items-center ' >
                 <div className="search-box  mr-3 hidden  sm:block ">
                     <button type='button' title='search' className="btn-search flex  justify-center items-center  "><IoMdSearch className=" " size={22} /> </button>
-                    <input type="text" className="input-search" placeholder="search tasks..." />
+                    <input type="text" className="input-search" placeholder="search tasks..." onChange={handleSearchTask} />
                 </div>
                 <h3 className={tasks}>Tasks</h3>
             </header>
@@ -119,7 +129,7 @@ const Task = () => {
                 <Droppable droppableId="droppable">
                     {(provided, snapshot) => (
                         <div {...provided.droppableProps} ref={provided.innerRef}>
-                            {list.map(
+                            {listData.map(
                                 (
                                     {
                                         title,
@@ -196,7 +206,7 @@ const Task = () => {
                                                                 />
                                                             </div>
                                                         </div>
-                                                        <p
+                                                        <div
                                                             className={`${taskDescription} ${displayDescription ? showDescription : ''
                                                                 } `}
                                                         >
@@ -228,7 +238,7 @@ const Task = () => {
                                                                 </time>
                                                             </div>
 
-                                                        </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
