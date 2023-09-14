@@ -45,7 +45,7 @@ const Form = () => {
 
     event.preventDefault();
 
-    if (id !== -1) {
+    if (id === -1) {
       dispatch(addTask({ title, description, dueDate }));
     } else {
       dispatch(updateTask({ id, title, description, dueDate, displayDescription: false, isCompleted: false }))
